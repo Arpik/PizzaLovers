@@ -25,10 +25,25 @@ def pizzas(request):
     number_of_pizzas = 2
     filled_multiple_pizza_form = MultiplePizzaForm(request.GET)
 
-    # Checking if user provided valid number.
+    # Checking if user has provided valid number.
 
     if filled_multiple_pizza_form.is_valid():
         number_of_pizzas = filled_multiple_pizza_form.cleaned_data['number'] 
     PizzaFormSet = formset_factory(PizzaForm, extra=number_of_pizzas)
-    fromset = PizzaFormSet()
-    
+    formset = PizzaFormSet()
+
+    # Checking if request method is post or get.
+        
+    if request.method == 'POST':
+        filled_formset = PizzaFormSet(request.POST)
+
+        # Checking if filled_formset has valid value.
+        
+        if filled_formset.is_valid():
+            note = 'Pizzas have been ordered!'
+        else: 
+            note = 'Order was not created, please try again.'
+        return render(request, 'pizza/pizzas.html', {'note' : note, 'formset' : formset})
+    else:
+        return render(request, 'pizza/pizzas.html', {'formset' : formset})
+
