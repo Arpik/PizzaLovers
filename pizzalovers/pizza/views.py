@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import PizzaForm, MultiplePizzaForm
+from django.forms import formset_factory
 
 def home(request):
     return render(request, 'pizza/home.html')
@@ -28,4 +29,6 @@ def pizzas(request):
 
     if filled_multiple_pizza_form.is_valid():
         number_of_pizzas = filled_multiple_pizza_form.cleaned_data['number'] 
+    PizzaFormSet = formset_factory(PizzaForm, extra=number_of_pizzas)
+    fromset = PizzaFormSet()
     
