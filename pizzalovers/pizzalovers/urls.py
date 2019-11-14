@@ -20,5 +20,6 @@ from pizza import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name = 'home'),
-    path('order', view.order, name='order'),
+    path('order', views.order, name='order'),
+    path('pizzas', views.pizzas, name='pizzas'),
 ]
