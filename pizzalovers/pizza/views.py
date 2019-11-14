@@ -18,4 +18,14 @@ def order(request):
         form = PizzaForm()
         return render(request, 'pizza/order.html', {'pizzaform':form, 'multiple_form':multiple_form})
 
-#def pizzas()
+# A function for the pizzas view.
+
+def pizzas(request):
+    number_of_pizzas = 2
+    filled_multiple_pizza_form = MultiplePizzaForm(request.GET)
+
+    # Checking if user provided valid number.
+
+    if filled_multiple_pizza_form.is_valid():
+        number_of_pizzas = filled_multiple_pizza_form.cleaned_data['number'] 
+    
