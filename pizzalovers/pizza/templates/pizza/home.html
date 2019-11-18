@@ -1,7 +1,8 @@
 {% extends 'pizza/base.html' %}
 {% block 'body' %}
+{% load static %}
 <div class="text-center">
-    <img src="" class="img-flud" alt="Pizza Lovers">
+    <img src="{% static 'pizza.jpg' %}" class="img-fluid w-100" alt="Pizza Lovers">
 </div>
 
 {% endblock %}
