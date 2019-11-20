@@ -8,7 +8,7 @@ class Size(models.Model):
     def __str__(self):
         return self.title
 
-# Pizza class
+# Specify Pizza class
 
 class Pizza(models.Model):
     topping1 = models.CharField(max_length=100)
